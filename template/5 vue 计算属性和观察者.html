@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5 vue 计算属性和观察者</title>
+</head>
+<body>
+<div id='content'>
+    <div>
+         {{name}}
+    </div>
+    <div>
+         {{reverse}}
+    </div>
+    <div>
+         {{now}}
+    </div>
+    <div>{{fullName}}</div>
+    <div>{{firstName}}</div>
+    <div>{{lastName}}</div>
+    <div><input type="text" v-model='ask'></div>
+    <div style="color:red;">{{resen}}</div>
+
+</div>
+
+
+<script src="../static/js/vue.js"></script>
+<script>
+//在模板中放入太多的逻辑会让模板过重且难以维护，对于任何复杂逻辑，你都应当使用计算属性；
+
+//计算属性vs方法，计算属性会产生缓存，值不发生改变时，会去取缓存的值；方法则是每次触发重新渲染时都会执行一次；
+
+
+
+    var app = new Vue({
+        el:'#content',
+        data:{
+            name:'我想在你眼里',
+            firstName:'zhang',
+            lastName:'sanfeng',
+//            fullName:'zhangsanfeng'
+            ask:"",
+            resen:''
+        },
+        watch:{
+//            firstName:function (val) {
+//                this.fullName= val + ' ' + this.lastName;
+//            },
+//            lastName:function (val) {
+//                this.fullName= this.firstName() + ' ' + val;
+//            },
+            ask:function () {
+                this.resen = 'think...';
+                if(this.ask == 'aa'){
+                    this.resen = 'wa';
+                }
+            }
+
+        },
+        method:{
+
+        },
+        computed:{
+            reverse:function () {
+                return this.name.split('').reverse().join('');
+            },
+            now:function () {
+                return new Date();
+            },
+            fullName:function () {
+                return this.firstName + " " + this.lastName;
+            }
+//            fullName:{
+//                get:function () {
+//                    return this.firstName+' '+this.lastName;
+//                },
+//                set:function (newName) {
+//                    var name = newName.split(' ');
+//                    this.firstName = name[0]
+//                    this.lastName = name[name.length - 1]
+//                }
+//            }
+        },
+
+
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>7 vue的条件渲染</title>
+</head>
+<body>
+<div id="min">
+
+    <div v-if='ok'>{{name}}</div>
+    <div v-else>no</div>
+    <div v-if="type==='A'">A</div>
+    <div v-else-if="type==='b'">b</div>
+    <div v-else-if="type==='C'">C</div>
+    <div v-else>else</div>
+
+
+    <!--用 key 管理可复用的元素-->
+    <form>
+        <div v-if="itype==='name'">
+            <label >name</label>
+            <input type="text"  placeholder="Enter your username" key="name_">
+        </div>
+        <div v-else>
+            <label for="email">email</label>
+            <input type="email" placeholder='Enter your email' key="email_">
+        </div>
+        <button type='button' v-on:click='change'>改变输入项</button>
+    </form>
+
+    <!--v-show  若需要频繁切换 比v-if消耗更少-->
+    <div v-show='show_'>显示还是不显示</div>
+
+</div>
+
+<script src='../static/js/vue.js'></script>
+<script>
+    var vvv = new Vue({
+        el:'#min',
+        data:{
+            name:'',
+            ok:false,
+            type:'A',
+            itype:'email',
+            email:'',
+            show_:false,
+            obj:{
+                _say:'ddd'
+            }
+        },
+        methods:{
+            change:function () {
+                console.log(this.itype);
+                if(this.itype==='name'){
+                    this.itype = 'email';
+                }else{
+                    this.itype='name'
+                }
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

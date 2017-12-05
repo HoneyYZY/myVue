@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>9 vue的事件处理</title>
+</head>
+<body>
+<div id="method">
+    <div>{{name}}</div>
+    <div v-on:click='num += 1'>{{num}}</div>
+    <div>{{age}}</div>
+    <button v-on:click='addAge'>addAge</button>
+    <button v-on:click='say("helo")'>say helo</button>
+    <button v-on:click='say("heloooooo")'>say helooooo</button>
+    <div>
+        <button v-on:click='warn("mmmmmmm")'>warn</button>
+    </div>
+    <div>
+        <!--<button v-on:keyup.13='key'>keydown</button>-->
+        <!--<button v-on:keyup.enter='key'>keydown</button>-->
+        <button v-on:keyup.esc='key'>keydown</button>
+    </div>
+</div>
+
+<script src="../static/js/vue.js"></script>
+<script>
+    var method = new Vue({
+        el:'#method',
+        data:{
+            name:'zhangsan',
+            num:10,
+            age:18
+        },
+        methods:{
+            addAge:function (event) {
+                this.age += 2;
+                console.log(event.target);
+            },
+            say:function (meg) {
+                alert(meg);
+            },
+            warn:function (msg,$evevt) {
+                if (event) event.preventDefault();
+                console.log(event.target);
+                alert(msg)
+            },
+            //事件修饰符；
+            /*
+            *<!-- 阻止单击事件继续传播 -->
+             <a v-on:click.stop="doThis"></a>
+
+             <!-- 提交事件不再重载页面 -->
+             <form v-on:submit.prevent="onSubmit"></form>
+
+             <!-- 修饰符可以串联 -->
+             <a v-on:click.stop.prevent="doThat"></a>
+
+             <!-- 只有修饰符 -->
+             <form v-on:submit.prevent></form>
+
+             <!-- 添加事件监听器时使用事件捕获模式 -->
+             <!-- 即内部元素触发的事件先在此处处理，然后才交由内部元素自身进行处理 -->
+             <div v-on:click.capture="doThis">...</div>
+
+             <!-- 只当在 event.target 是当前元素自身时触发处理函数 -->
+             <!-- 即事件不是从内部元素触发的 -->
+             <div v-on:click.self="doThat">...</div>
+            *
+            * */
+
+
+            //按键修饰符；
+            key:function () {
+                alert("yes");
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

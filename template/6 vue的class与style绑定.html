@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>6 vue的class和style的绑定</title>
+</head>
+<body>
+
+<div id='mian'>
+    <!--class-->
+    <!--对象式  当newera为true时，会添加newerclass-->
+    <div class="sss" v-bind:class='{newer:newera,older:oldera}'></div>
+        <!--同样可以在vue对象中设置（最好如此）-->
+    <div class="aaa" v-bind:class='newClass'></div>
+
+    <!--数组式-->
+    <div class='arr' v-bind:class='[newera,oldera]'></div>
+    <div class='arr' v-bind:class='[newera? "": "llll"]'></div>
+    <div class='arr' v-bind:class='[{newera:newera},dd]'></div>
+
+
+    <!--style-->
+    <!--对象方式，可以内联式也可以直接在vue对象中写个style对象-->
+    <div v-bind:style='{color:backgroundColor}'>对象</div>
+    <div v-bind:style='color'>对象</div>
+    <!--数组方式  可以调用多个style对象-->
+    <div v-bind:style='[color,middle]'>数组</div>
+
+
+
+</div>
+
+
+<script src="../static/js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#mian',
+        data:{
+            //class 测试
+            newera:'aa',
+            oldera:false,
+            dd:'asd',
+            newClass:{
+                aa:true,
+                bb:false
+            },
+            //style 测试
+            //v-bind:style 的对象语法十分直观——看着非常像 CSS，但其实是一个 JavaScript 对象。CSS 属性名可以用驼峰式 (camelCase) 或短横线分隔 (kebab-case，记得用单引号括起来) 来命名：
+            backgroundColor:'red',
+            color:{
+                backgroundColor:'red',
+                fontSize:'20px',
+            },
+            middle:{
+                marginTop:'20px',
+                textAlign:'center',
+            }
+        }
+    })
+
+
+</script>
+
+</body>
+</html>

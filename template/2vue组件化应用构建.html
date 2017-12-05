@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue组件化应用构建</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <togo-item v-for='item in list'
+                   v-bind:togo='item'
+                   v-bind:key='item.id'>
+
+        </togo-item>
+    </ul>
+
+
+</div>
+
+
+
+<script src="../static/js/vue.js"></script>
+<script>
+    Vue.component('togo-item',{
+        props:['togo'],
+        template:'<li>{{togo.name}}</li>'
+    })
+    var app = new Vue({
+        el:'#app',
+        data:{
+            list:[
+                {id:0,name:'zhangsan'},
+                {id:1,name:'zhaosi'},
+                {id:2,name:'laogui'},
+            ]
+        }
+    })
+
+
+
+</script>
+</body>
+</html>

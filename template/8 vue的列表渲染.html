@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>8 vue的列表渲染</title>
+</head>
+<body>
+<div id="vue">
+    <div>
+        <ul v-for='item in arr1' v-bind:key='item.id'>
+            <li>{{item.name}}</li>
+        </ul>
+        <div>---------------</div>
+        <ul v-for='(items,idx) in arr1'>
+            <li>{{idx+1}}  {{items.name}}</li>
+        </ul>
+        <ul v-for='(val,key,index) in obj1'>
+            <li>{{key}} {{val}} {{index}}</li>
+        </ul>
+
+
+
+    </div>
+
+
+
+</div>
+
+
+<div id="zujian">
+    <div>------组件------</div>
+    <div>
+        输入
+        <input type="text" v-model='newTodoText' v-on:keyup.enter='addNewTodo' placeholder='add a new todo'>
+
+        <ul>
+            <li is='todo_item' v-for='(todo,idx) in todos' v-bind:key='todo.id' v-bind:title='todo.title' v-on:remove='todos.splice(idx,1)'>{{todo}}</li>
+        </ul>
+    </div>
+</div>
+
+<script src="../static/js/vue.js"></script>
+<script>
+    var vue = new Vue({
+        el:'#vue',
+        data:{
+            //数组
+            arr1:[
+                {name:'zhangsan',id:2},
+                {name:'dandan',id:1},
+                {name:'jianli',id:4},
+                {name:'best',id:3},
+
+            ],
+            //对象
+            obj1:{
+                see:'苹果',
+                no:'梨子',
+                noo:'桃子',
+            }
+
+        }
+    })
+
+//    数组返回改变后的数组
+    //pop 删除数组最后一个
+    //shift 删除数组第一个
+
+    //push 数组后面添加n个
+    //unshift 数组前面添加n个
+    vue.arr1.push({name:'aaa',id:5});
+
+
+
+//返回新数组的操作； filter（） concat()  slice(开始下标，结束下标)取出想要的数据
+    //filter 数组筛选  arr.filter(func(item,index,arr){对数据进行筛选的操作}) item=每一项 index=每一项的下标 arr=原数组；返回新数组，原数组不会改变；
+    //给原数组重新赋值；
+    vue.arr1 = vue.arr1.filter(function (item,index,aa) {
+        return item.id > 0;
+    })
+
+    var newArr = [{name:'ccacac',id:6}];
+    vue.arr1 = vue.arr1.concat(newArr);
+
+    vue.arr1 = vue.arr1.slice();
+
+
+//    二 、 对象，vue不能识别对象的添加更改；
+    vue.obj1.apple = 'apple';
+    Vue.set(vue.obj1, 'age', 27)
+
+
+
+    Vue.component('todo_item',{
+        template:'<li>{{title}}<button v-on:click="$emit(\'remove\')">X</button></li>',
+        props:['title']
+
+    });
+    var zujian = new Vue({
+        el:'#zujian',
+        data:{
+            newTodoText:'',
+            todos:[
+                {id:1,title:'倩女幽魂'},
+                {id:2,title:'一生一世'},
+                {id:3,title:'扫毒'},
+            ],
+            nextTodoId:4
+        },
+        methods:{
+            addNewTodo:function () {
+                this.todos.push({
+                    id:this.nextTodoId++,
+                    title:this.newTodoText
+                })
+                this.newTodoText = '';
+            }
+        }
+    })
+</script>
+</body>
+</html>

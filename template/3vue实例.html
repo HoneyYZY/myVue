@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue实例</title>
+</head>
+<body>
+<div id="content">
+    <p>{{name}}</p>
+</div>
+<script src="../static/js/vue.js"></script>
+<script>
+
+    var vue = new Vue({
+        el:'#content',
+        data:{
+            name:'zhangsan',
+            //设置将要用但还没用的初始值；
+            str:'',
+            num:0,
+            obj:null,
+            arr:[],
+            boo:false,
+
+        },
+        created:function () {
+            console.log("创建完成");//vue实例创建完成执行；
+        }
+
+
+
+    })
+    vue.name = 'lisi';
+    console.log(vue.$data.name);//lisi
+
+    console.log(vue.name === vue.$data.name);//true;
+
+    //调用vue实例的方法；
+    console.log(vue.$data);;
+    console.log(vue.$el);;
+    vue.$watch('name',function (newa,old) {
+        console.log(newa + "_____" + old);
+    })
+    vue.$data.name = 'wangwu';
+
+
+</script>
+</body>
+</html>

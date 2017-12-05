@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>10 vue的表单输入绑定</title>
+</head>
+<body>
+<div id='app'>
+    <form action="">
+        <section>
+            <label for="name">name：input输入</label>
+            <input type="text" id='name' v-model='form1.msg'
+                   placeholder='Plese input your name'>
+        </section>
+
+        <section>
+            <label for="textarea">description：textarea多行输入</label><br>
+            <textarea name="" id="textarea" cols="40" rows="4" v-model='form1.description'></textarea>
+        </section>
+
+        <section>
+            <label for="checkbox1">sport：checkbox复选框</label>
+            <input type="checkbox" id='checkbox1' v-model='form1.checkbox1'>
+        </section>
+
+        <section>
+            <div>faves：checkbox多个勾选框对于一个数组</div>
+            <input type="checkbox" id='apple' v-model='form1.faves' value='apple'>
+            <label for="apple">苹果</label>
+            <input type="checkbox" id='TV' v-model='form1.faves' value='TV'>
+            <label for="TV">电视</label>
+            <input type="checkbox" id='movie' v-model='form1.faves' value='movie'>
+            <label for="movie">电影</label>
+        </section>
+
+        <section>
+            <div>gender:radio单选框</div>
+            <input type="radio" v-bind:value='man' id='man' v-model="form1.gender" >
+            <label for="man">男</label>
+            <input type="radio" v-bind:value='woman' id='woman' v-model="form1.gender" >
+            <label for="woman">女</label>
+        </section>
+
+        <section>
+            <div>phone:select 单选下拉</div>
+            <select name="phone" id="phone" v-model='form1.selectPhone'>
+                <option v-for='p in form1.phones' :value='p'>{{p}}</option>
+            </select>
+        </section>
+
+        <section>
+            <div>phones:select 多选下拉</div>
+            <select name="phone" id="phones" multiple v-model='form1.selectPhones'>
+                <option v-for='p in form1.phones' :value='p'>{{p}}</option>
+            </select>
+        </section>
+
+
+        <!--值绑定，各种form表单都可利用v-bind绑定值；-->
+    </form>
+    <br>
+    <div>
+        <div>名字： {{form1.msg}}</div>
+        <div>描述： {{form1.description}}</div>
+        <div>运动： {{form1.checkbox1}}</div>
+        <div>爱好： {{form1.faves}}</div>
+        <div>性别： {{form1.gender}}</div>
+        <div>手机： {{form1.selectPhone}}</div>
+        <div>手机： {{form1.selectPhones}}</div>
+    </div>
+
+</div>
+
+<script src="../static/js/vue.js"></script>
+<script>
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+
+            man:'男人',
+            woman:'女人',
+            form1: {
+                msg: '',
+                description:'',
+                checkbox1:'',
+                faves:[],
+                gender:'',
+                phones:['apple','huawei','vivo','oppo','chuizi','360'],
+                selectPhone:'',
+                selectPhones:[],
+
+            }
+        }
+    })
+
+
+</script>
+</body>
+</html>

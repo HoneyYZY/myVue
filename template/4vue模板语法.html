@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4 vue 模板语法</title>
+</head>
+<body>
+<div id='content'>
+    <div>插值：{{name}}</div>
+    <div v-once>插值(只执行一次不会改变)：{{name}}</div>
+
+    <!--你的站点上动态渲染的任意 HTML 可能会非常危险，因为它很容易导致 XSS 攻击。请只对可信内容使用 HTML 插值，绝不要对用户提供的内容使用插值。-->
+    <div v-html='newHtml'>插入HTML，需要用指令v-html,会清空被插入的元素的值 </div>
+
+    <!--特性-->
+    <div v-bind:id='divId'>用v-bind：id='' 加一个id </div>
+
+    <button v-bind:disabled='disable'>用v-bind:disabled='' 改变是否可点击</button>
+
+
+    <!--js表达式 只能包含一个表达式-->
+    <div>{{num + 10}}</div>
+    <div>{{ok?message:num}}</div>
+    <div>{{message.split('').reverse().join('')}}</div>
+
+    <!--指令 参数-->
+    <a v-bind:href='baidu'>baidu</a>
+    <div v-if='see'>能不能看到我</div>
+    <div v-on:click='doSomething'>点我做事</div>
+    <div @click='doSomething'>点我做事</div>
+    <div :src='name'>src</div>
+</div>
+
+<script src="../static/js/vue.js"></script>
+<script>
+
+    var app = new Vue({
+        el:'#content',
+        data:{
+            name:'大草原的湖边',
+            newHtml:'<span style="color:red;">是你的名字</span>',
+            //特性；
+            divId:'aaa',
+            disable:true,
+            //js表达式
+            num:1,
+            message:'hello',
+            ok:false,
+            baidu:'https://www.baidu.com',
+            see: true,
+        },
+        methods:{
+            doSomething:function (a) {
+                console.log("dosomething");
+            }
+        }
+    })
+
+    app.name = '还记得前生梦是';
+
+</script>
+</body>
+</html>
