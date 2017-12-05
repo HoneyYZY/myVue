@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src='./static/jquery-1.11.3.min.js'></script>
+<script>
+    $(function () {
+        var data = [{tze: 800, tzxz: "tzxz-a"},
+            {tze: 5000, tzxz: "tzxz-b"},
+            {tze: 8000, tzxz: "tzxz-a"},
+            {tze: 2000, tzxz: "tzxz-b"},
+            {tze:100,tzxz:'aaa'},
+            {tze:1000,tzxz:'bbbs'},
+            {tze:1000,tzxz:'bbba'},
+            {tze:1000,tzxz:'bbbf'},
+            {tze:1000,tzxz:'bbb'},
+            {tze:10020,tzxz:'aaa'},
+        ];
+
+        for(var i=0; i<data.length; i++){
+            for(var j=0; j<data.length; j++){
+                if(data[i].tzxz === data[j].tzxz && i != j){
+                    data[i].tze = data[i].tze + data[j].tze;
+                    data.splice(j,1);
+                }
+            }
+
+        }
+        console.log(data);
+
+
+
+
+        var showData = [{tze: 8800, tzxz: "tzxz-a"},
+            {tze: 7000, tzxz: "tzxz-b"}];
+    })
+
+
+</script>
+
+
+</body>
+</html>

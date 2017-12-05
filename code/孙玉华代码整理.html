@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>代码整理</title>
+    <style>
+        /*1.伪元素做图标start*/
+        .tab-content {
+            position: relative;
+        }
+        .tab-content:after {
+            z-index: 1;
+            width: 33px;
+            height: 51px;
+            display: table;
+            content: '';
+            position: absolute;
+            left: 22px;
+            top: 0;
+            /*background: url(/statics/images/2.0/icon.png) no-repeat -203px -98px;*/
+        }
+        /*伪元素做图标end*/
+        /*2.透明度兼容性*/
+        .opacity {
+            opacity: .5;
+            filter: alpha(opacity=50);
+        }
+        /*3.图片水平居中*/
+        .box {
+            width: 200px;
+            height: 100px;
+            background: pink;
+            /*text-align: center;*/
+        }
+        img {
+            margin:0 auto;
+            display: block;
+            background: #000;
+        }
+        /*4.选中的部分设置样式*/
+        ::selection {
+            text-shadow: none;
+            background-color: highlight;
+            color: highlighttext;
+        }
+        /*5.清除浮动和外边距塌陷*/
+        .clearfix:before, .clearfix:after {
+            content: "";
+            display: table;
+        }
+        .clearfix:after {
+            clear: both;
+        }
+        /*6.谷歌多行显示省略号*/
+        .slh{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+        }
+        /*7.设置textarea/inputplaceholder字体颜色*/
+         input::-webkit-input-placeholder {
+                      color: red;
+          }
+         textarea:-ms-input-placeholder {
+                     /*IE10+*/
+                     color: red;
+         }
+         textarea:-moz-placeholder {
+                     /*Firefox4-18*/
+                     color: red;
+         }
+         input::-moz-placeholder {
+                     /* Firefox19+*/
+                     color: red;
+         }
+        /*9.垂直居中*/
+        /*第一种*/
+        .pic {
+            width: 500px;
+            height: 400px;
+            background: palegreen;
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+        /*第二种*/
+        .img-div {
+            position: relative;
+        }
+        .img {
+            position: absolute;
+            margin: auto;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+        /*第三种*/
+        .img-div {
+            width: 500px;
+            height: 400px;
+            background: pink;
+            line-height: 400px;
+            text-align: center;
+        }
+        .img {
+            vertical-align: middle;
+        }
+        /*第四种*/
+        .img-div {
+            position: relative;
+        }
+        .img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        /*第五种*/
+        .img-div {
+            width: 500px;
+            height: 800px;
+            background: palegreen;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+<!--1.text-transform 属性控制文本的大小写。-->
+<!--2.$(window).width();窗口宽度
+      $(window).height();窗口高度
+      $(document.body).width();文档宽度==$(document).width()
+      $(document.body).height();文档高度==document.body.clientHeight==$(document).height()
+      $(window).scrollTop();垂直滚动条位置
+-->
+
+<!--4.居中强制换行-->
+<p>
+    更多行解决方案正马不停蹄向您赶来，<br>拿出手机，扫码关注“百度营销中心”微信公众账号，注册成为会员，<br>即可鲜人一步，获取一手营销内参。<br>
+</p>
+<!--5.opacity可以对图片设置透明度-->
+<!--6.mouseover与mouseenter区别-->
+与 mouseenter 事件不同，不论鼠标指针穿过被选元素或其子元素，都会触发 mouseover 事件。只有在鼠标指针穿过被选元素时，才会触发 mouseenter 事件。
+<!--7.letter-spacing设置间隙-->
+<!--8.css3选择器和jQuery选择器-->
+:checked 选择器选取所有选中的复选框或单选按钮。
+<!--:selected jQuery选择器-->
+:selected 选择器选取被选择的 <option> 元素。
+
+
+
+
+
+</body>
+<script></script>
+<script>
+    //jquery选择器 http://www.w3school.com.cn/jquery/jquery_ref_selectors.asp
+    //1.is方法
+    $('.has_select_brand').is(':hidden')
+    $('#brand_letters').is(":visible")
+    //2.offset() 方法返回或设置匹配元素相对于文档的偏移/位置
+    $('.show-city').css("left", $(this).offset().left - 225 + "px");
+    //3.find()以及jQuery选择器的写法
+    $('.ay-tabnav li').click(function () {
+        var index = $(this).index();
+        $(this).addClass('ay-now').siblings().removeClass('ay-now')
+        $(this).parents('.ay-drop-box').find('.ay-list-city ul').eq(index).show().siblings().hide();
+    })
+    $('.catalog-second').find('.catalog-' + name).show();
+    $("#third_section_" + index)
+    //5.返回顶部
+    $("#gotopBar").click(function () {
+        $("html,body").stop().animate({ "scrollTop": 0 }, 500);
+    });
+    //6.设置left控制显示与不显示
+    $('.app-download-close').css("left", "-100%");
+    $('.app-download-open').css("left", "0");
+    $('.show-city').css("left", $(this).offset().left - 225 + "px");
+    //7.定义js变量
+    var $this = $(this),currentId = $this.attr("id"),arr = currentId.split('_');
+    //8.$.getJSON()用法
+    //9.eq用法 eq() 方法将匹配元素集缩减值指定 index 上的一个。
+    $('#jp_FkContainer #data3 .each-row').eq(2).hide();
+    $('#jp_interdepartCityDiv .tt_tabs .hot_tt').removeClass("now").eq("1").addClass("now");
+    $('#jp_interdepartCityDiv .items .item:eq(0)').addClass("hidden").hide();
+    $('#jp_interdepartCityDiv .items .item:eq(1)').removeClass("hidden").show();
+    //10.jQuery连写
+    $('#jp_departTime3').val("yyyy-mm-dd").css("color", "#aaa");
+    //11.jquery控制style行内样式
+    $("#aoyou_VisaDiv").attr("style", "display: none; left: 214px;");
+    //12.jquery控制css样式
+    $('#mp_arrivecity_search_pop').css({ "top": "35px", "left": "0px", "height": "auto" });
+    //13.当前显示与其他隐藏
+    $(".ay-list-city").find("ul").eq(index).show().siblings().hide();
+    //14.jquery事件连写
+    $("#ddy_arriveCityName").click(function () {
+
+    }).blur(function () {
+
+    }).keyup(function () {
+        if(the_value=="") {
+            $('#ddy_arrivecity_search_pop').remove();
+            $(this).click();//注意点
+        }
+    })
+    //15.点击页面，盒子隐藏
+    $('body').click(function () {
+        $('.search-pop-box').hide();
+        $('.search-inputbox').hide();
+        $('.autocomplete').hide();
+        $('#searchHomeDiv1').html("");
+        $('#searchHomeDiv2').html("");
+        $('#searchHomeDiv3').html("");
+        $('#homeSearchInput_pop').remove();
+        $("#hidSearchKeyWord").val("");
+    });
+    //16.注册事件调用函数
+    $(".sib-tr").click(clearSearchedKeyWords);
+    function clearSearchedKeyWords() {
+        $.cookie("aySearchList", null, { path: "/", domain: ".aoyou.com" });
+        $(".search-inputbox div.search-titlelist").remove();
+    }
+    //17.not选择器
+    $(root).on("click", "li:not(.separator)", function () {
+        var idx = $(this).prevAll().not(".separator").length
+                , top = $(this).offset().top - $(this).height()
+                , scrollTop = $(window).scrollTop();
+        var position = layerPositions[idx] - (top - scrollTop);
+        $("html, body").animate({
+            scrollTop: position
+        }, 300);
+    });
+    //18.多个事件嵌套
+    $('.local-city').mouseenter(function () {
+        $('.show-city').css("left", $(this).offset().left - 225 + "px");
+        $('.show-city').show();
+    });
+    $('.local-city').mouseleave(function () {
+        $('.show-city').hide();
+        $('.show-city').mouseenter(function () {
+            $('.show-city').show();
+        }).mouseleave(function () {
+            $('.show-city').hide();
+        });
+    });
+    //19.tab切换带动画
+    var tabChangeHandler = null;
+    $('.tab li').on('mouseover', function () {
+
+        if ($(this).hasClass("current")) {
+            return;
+        }
+        var _this = $(this);
+        tabChangeHandler = setTimeout(function () {
+            var index = _this.index();
+            _this.addClass('current').siblings().removeClass('current');
+            _this.parents('.section').find('.morebtn').addClass("hidden").eq(index).removeClass("hidden");
+            _this.parents('.section').find('.sectionbox').addClass("hidden").eq(index).removeClass("hidden");
+            _this.parents('.section').find('.sectionbox').eq(index).find("img[data-original]").lazyload();
+            tabChangeHandler = null;
+        }, 100);
+    });
+    $('.tab li').on('mouseout', function () {
+        var _this = $(this);
+        if (tabChangeHandler) {
+            clearTimeout(tabChangeHandler);
+            tabChangeHandler = null;
+        }
+    });
+    //20.js控制placeholder的颜色
+    function setdate(date) {
+        $(date).click(function () {
+            if ($(this).val() == "yyyy-mm-dd") {
+                $(this).val("").css("color", "red");
+            }
+        }).blur(function () {
+            if ($(this).val() == "") {
+                $(this).val("yyyy-mm-dd").css("color", "blue");
+            }
+        });
+    }
+    setdate("#depart");
+
+    $(".ui-form-item").find(".ui-input").each(function () {
+        $(this).css("color", "#333");
+        var oldValue = $(this).val();
+        if (oldValue == "") {
+            $(this).css("color", "#888");
+            $(this).val($(this).attr("def"));
+            //removeAttr()
+        }
+    });
+    //输入时的事件
+    $(".ui-form-item").find(".ui-input").focus(function () {
+        $(this).css("color", "#333");
+        var oldValue = $(this).val();
+        if (oldValue == $(this).attr("def")) {
+            $(this).val("");
+        }
+    });
+    //21.switch-case语句
+    function getcabin(cabin) {
+        var name = "";
+        switch (cabin) {
+            case "Y":
+                name = "经济舱";
+                break;
+            case "C":
+                name = "公务舱";
+                break;
+            case "F":
+                name = "头等舱";
+                break;
+            default:
+                name = "经济舱";
+                break;
+        }
+        return name;
+    }
+    console.log(getcabin());
+    //22.设置字符串的最后一个值、获取去掉字符串的第一个值
+    "abcdefg".substr(6, 1)//g
+    $("#001").substring(1);
+    //23.replace()方法/替换
+    "1992/09/10".replace(/\//g, '-')
+    "1992-09-10"
+    location.pathname.replace(/^\//, '')
+    "/domesticgroup/g24714i2"
+    "domesticgroup/g24714i2"
+    //24.animate动画
+    timer = window.setInterval(function () {
+        $(".yhq span").animate({"top":"-15px"},200).animate({"top":"-0px"},200)
+                .animate({"top":"-12px"},200).animate({"top":"-0px"},200)
+                .animate({"top":"-6px"},200).animate({"top":"-1px"},200)
+                .animate({"top":"-1px"},200).animate({"top":"-0px"},200);
+    },1000);
+    //25.搜索框无内容时点击提交
+    $('#button').click(function (e) {
+        var pet_search_text = $('#keyword');
+        if (pet_search_text.val() == '' || pet_search_text.val() == '请输入关键字') {
+            pet_search_text.val('').focus();
+            e.preventDefault();
+        } else {
+            $('#search_form').submit();
+        }
+    });
+    //26.保存当前this。
+    $('.search_text').hover(function () {
+        var _t = $(this);
+        _t.find('.search_select').show().find('a').click(function () {
+            $('#type').val($(this).attr('v'));
+            _t.find('span').text($(this).text());
+            _t.find('.search_select').hide();
+        });
+    }, function () {
+        $(this).find('.search_select').hide();
+    });
+    //27.next()
+    $('.menu_list').hover(function () {
+        $(this).find('p em').addClass('up');
+        $(this).find('p').addClass('p_hover').next().show();
+    }, function () {
+        $(this).find('p em').removeClass('up');
+        $(this).find('p').removeClass('p_hover').next().hide();
+    });
+    //28.jquery选择器
+    $("p:first")
+    $("p:last")
+    $("tr:even")
+    $("tr:odd")
+    $("p:hidden")
+    $("p:visible")
+    $("ul li:gt(3)")
+    $("ul li:lt(3)")
+    $("input:not(.txt)")
+    $(":selected")
+    $(":checked")
+    $(":disabled")
+    $(":enabled")
+    $().nextAll()
+    $().prevAll()
+    //jquery方法
+    $().toggle();
+    '  222  333   '.trim() // "222  333"
+    $.trim($("#homeSearchInput").val()).toLowerCase();
+    //29.跑马灯
+    startmarquee(25, 25, 700);
+    function startmarquee(lh, speed, delay) {
+        var p = false;
+        var t;
+        var o = document.getElementById("enterpriseIntroduce");
+        o.innerHTML += o.innerHTML;
+        o.style.marginTop = 0;
+        o.onmouseover = function () { p = true; }
+        o.onmouseout = function () { p = false; }
+        function start() {
+            t = setInterval(scrolling, speed);
+            if (!p) o.style.marginTop = parseInt(o.style.marginTop) - 1 + "px";
+        }
+        function scrolling() {
+            if (parseInt(o.style.marginTop) % lh != 0) {
+                o.style.marginTop = parseInt(o.style.marginTop) - 1 + "px";
+                if (Math.abs(parseInt(o.style.marginTop)) >= o.scrollHeight / 2) o.style.marginTop = 0;
+            } else {
+                clearInterval(t);
+                setTimeout(start, delay);
+            }
+        }
+        setTimeout(start, delay);
+    }
+    //30.根据身份证获取年月日 "610525199309100421".substring(6, 10)
+    $("#selYear").val(IDCardNo.substring(6, 10));//1993
+    $("#selMonth").val(IDCardNo.substring(10, 12));//09
+    $("#selDays").val(IDCardNo.substring(12, 14));//10
+    //获取标准时间
+    fromDate = new Date("2017-11-01".replace(/-/g,'/'));//Wed Nov 01 2017 00:00:00 GMT+0800 (中国标准时间)
+    toDate = "2017-11-06" + " 23:59:59";
+    toDate = new Date(toDate.replace(/-/g,'/'));//Mon Nov 06 2017 23:59:59 GMT+0800 (中国标准时间)
+    //new Date(2017, 9, 10) 月份+1
+    //Tue Oct 10 2017 00:00:00 GMT+0800 (中国标准时间)
+    //获取某年某月的某一天
+    //new Date(2017, 10, 17).getDate() ==== 17
+    //new Date(2017, 9, 0)
+    //Sat Sep 30 2017 00:00:00 GMT+0800 (中国标准时间)
+    //获取某年某月的天数
+    //new Date(1993, 10, 0).getDate() ----31
+    //获取某年某月某日到某年某月某日带毫秒
+    //new Date(2017,10,02)
+    //Thu Nov 02 2017 00:00:00 GMT+0800 (中国标准时间)
+    //new Date(2017,10,02,23,59,59)
+    //Thu Nov 02 2017 23:59:59 GMT+0800 (中国标准时间)
+    //new Date("2017/10/21")
+    //Sat Oct 21 2017 00:00:00 GMT+0800 (中国标准时间)
+
+    //多少天以后的时间
+    var saveLabelDays = 30;
+    var edate = new Date();
+    edate.setDate(edate.getDate() + saveLabelDays);
+    console.log(edate);//Wed Dec 20 2017 14:17:35 GMT+0800 (中国标准时间)
+    edate.toUTCString()//"Wed, 20 Dec 2017 06:17:35 GMT"  Date 对象转换为世界时字符串
+
+    //31.js对象数组属性合并的问题
+    var data = [{tze: 800, tzxz: "tzxz-a"},
+        {tze: 5000, tzxz: "tzxz-b"},
+        {tze: 8000, tzxz: "tzxz-a"},
+        {tze: 2000, tzxz: "tzxz-b"}];
+
+    for(var i=0; i<data.length; i++){
+        for(var j=0; j<data.length; j++){
+            if(data[i].tzxz === data[j].tzxz && i != j){
+                data[i].tze = data[i].tze + data[j].tze;
+                data.splice(j,1);
+            }
+        }
+    }
+    console.log(data);
+
+
+
+
+
+    /*
+    * 1.
+    * */
+    $(window).resize();
+    /*
+    * 1.获取当前时间的毫秒值
+    */
+
+    var date = new Date()
+    console.log(date.getTime());
+
+    /*
+    * 2.jquery的hover时间添加类名和移除类名
+    */
+
+    $('.user').hover(
+            function(){
+                $(this).addClass('current').find('.user_select').show();
+                $(this).find('i').addClass('down');
+            },function(){
+                $(this).removeClass('current').find('.user_select').hide();
+                $(this).find('i').removeClass('down');
+            }
+    );
+
+
+    /*
+    * 3.返回顶部
+    * */
+    $('#sider_returntop').on("click",function(){
+        $('html, body').animate({scrollTop:0}, 'slow');//animate()四个参数。easing参数设置动画速度 线性和曲线运动
+    });
+
+    /*
+    *4.多个if-else语句
+    *
+    * */
+
+    /*if( ){
+        if(){
+
+        }
+        if(){
+
+        }
+    }else if( ) {
+
+    }else {
+
+    }*/
+    /*5.随机数*/
+    var random = function () {
+        return parseInt(Math.random() * 10000) + (new Date()).valueOf();
+    };
+    /*6.tab切换的另一种写法*/
+    $(".tabbar .tab-item").click(function () {
+        $(".tabbar").children(".tab-item").removeClass("current");
+        $(this).addClass("current");
+        setFlightSearch();
+    });
+    /*7.给标签设置不同值判断、所以类名隐藏、某个id名显示*/
+    //单程往返
+    $(".routeSelect .radio").click(function () {
+        $(".routeSelect .radio .icon-radio").removeClass("active");
+        $(this).children('.icon-radio').addClass("active");
+        var name = $(this).data("name");
+        var data_index = name == 2 ? 1 : name;
+        $('#searchbox').find('.search-form').hide();
+        $('#line' + data_index).show();
+        if (name == 1) {
+            $('#arrdate').parent('.input-block').css("background-color", "#ccc");
+            $('#arrdate').css("background-color", "#ccc").attr("disabled", true);
+//            removeAttr('style')
+            //closest()
+        } else if (name == 2) {
+            $('#arrdate').parent('.input-block').css("background-color", "");
+            $('#arrdate').css("background-color", "").attr("disabled", false);
+        }
+    });
+    //8.楼层跳转
+    $('.rightside a').not($(".goTop")).bind('click', function () {
+        var id = $(this).attr('href').substring(1);
+        $('html,body').stop().animate({scrollTop: $('#' + id).offset().top}, 500, "swing");
+        return false;
+    });
+    //9.选择器自定义方法
+    (function ($) {
+        $.fn.keyWords = function () {
+            this.focus(function () {
+                if ($(this).val() == '请输入关键字') {
+                    $(this).val('')
+                }
+                $(this).addClass('search_hover');
+            }).blur(function () {
+                var _t = $(this);
+                if (_t.val() == '') {
+                    _t.val('请输入关键字').css('color', '#666');
+                } else {
+                    _t.css('color', '#000')
+                }
+                _t.removeClass('search_hover');
+            })
+        }
+    })(jQuery);
+    $('.search').keyWords();
+    //10.js截取字符串
+    function subStringApp(str, i, ext) {
+        //if (str != "") {
+        if (str) {
+            if (str.length > i) {
+                return str.substring(0, i) + ext;
+            }
+            return str
+        }
+        return "";
+    }
+    //11.事件里面嵌套事件
+    $(".btn1").click(function () {
+        console.log("kkk");
+        $(".btn2").click();
+    });
+    $(".btn2").click(function () {
+        console.log("qqqq");
+    });
+    //12.
+    typeof (ProductLables) != "undefined"
+   //13.location对象的属性
+    var _protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    //14."zentaosid=t7cfe5k4ob38e09cso4q5a3792"
+    var searchlabelcookieKey = "zentaosid";
+    var searchlabelcookieValue = "";
+    if (document.cookie.indexOf(searchlabelcookieKey) > -1) {
+        var cookies = document.cookie.split(";");
+        for (var i = cookies.length - 1; i >= 0; i--) {
+            var cookieTrim = $.trim(cookies[i]);
+            if (cookieTrim.indexOf(searchlabelcookieKey)==0) {
+                searchlabelcookieValue = cookieTrim.substr(searchlabelcookieKey.length + 1);
+                break;
+            }
+        }
+    }
+    //15.encodeURIComponent
+    //16.定义变量名称
+    var $this = $(this), currentId = $this.attr("id"),
+
+
+
+
+
+
+
+
+    //函数封装
+    /*
+      1.url参数以对象形式展示
+     */
+
+    //获取当前url参数对象
+    //方法1：简单
+    function parseQueryString(url) {
+        var str = url.split('?')[1];
+        var key = str.split('&');
+        var keyValue = [];
+        var obj = {};
+        for (var i = 0,l = key.length; i < l; i++) {
+            keyValue = key[i].split('=');
+            obj[keyValue[0]] = keyValue[1];
+
+        }
+        return obj;
+    }
+    parseQueryString("http://hub.pactera.com/?q=home-page&destination=home-page&ticket=ST-2096094-bGOCtczbxfnTTO55wIsK-cas01.example.org");
+    //{q: "home-page", destination: "home-page", ticket: "ST-2096094-bGOCtczbxfnTTO55wIsK-cas01.example.org"}
+
+
+    //方法2：
+    function GetRequest() {
+        var url = location.search; //获取url中"?"符后的字串 //url="?q=home-page&destination=home-page&ticket=ST-2096094-bGOCtczbxfnTTO55wIsK-cas01.example.org""
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1); //str="q=home-page&destination=home-page&ticket=ST-2096094-bGOCtczbxfnTTO55wIsK-cas01.example.org"
+            strs = str.split("&"); //["q=home-page", "destination=home-page", "ticket=ST-2096094-bGOCtczbxfnTTO55wIsK-cas01.example.org"]
+            for(var i = 0; i < strs.length; i ++) {
+                theRequest[strs[i].split("=")[0]]=(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+    GetRequest();
+
+    var theRequest = new Object();
+    var strs = ["q=home-page", "destination=home-page", "ticket=ST-2096094-bGOCtczbxfnTTO55wIsK-cas01.example.org"]
+    for(var i = 0; i < strs.length; i ++) {
+        theRequest[strs[i].split("=")[0]]=(strs[i].split("=")[1]);
+    }
+    console.log(theRequest);
+    //{q: "home-page", destination: "home-page", ticket: "ST-2096094-bGOCtczbxfnTTO55wIsK-cas01.example.org"}
+
+
+
+    /*
+    * 2.替换url中的参数值
+    * */
+    function changeURLArg(url,arg,arg_val){
+        var pattern=arg+'=([^&]*)';
+        var replaceText=arg+'='+arg_val;
+        if(url.match(pattern)){
+            var tmp='/('+ arg+'=)([^&]*)/gi';
+            tmp=url.replace(eval(tmp),replaceText);
+            return tmp;
+        }else{
+            if(url.match('[\?]')){
+                return url+'&'+replaceText;
+            }else{
+                return url+'?'+replaceText;
+            }
+        }
+        return url+'\n'+arg+'\n'+arg_val;
+    }
+
+    changeURLArg("http://hub.pactera.com/?q=home-page&destination=home-page&ticket=ST-2096094-bGOCtczbxfnTTO55wIsK-cas01.example.org","q","123");
+
+    /**
+     * 2.倒计时函数
+     *
+     * @param starttime int 开始时间 毫秒值
+     * @param endtime int 结束时间 毫秒值
+     * @returns null|string
+     */
+    function difftime(starttime,endtime){
+        try{
+            starttime = parseInt(starttime);
+            endtime   = parseInt(endtime);
+            var difftime  = endtime - starttime;
+            if(difftime > 0){
+                //显示正常倒计时
+                var days=Math.floor(difftime/(24*3600));
+                //计算出小时数
+                var leave1=difftime % (24*3600);    //计算天数后剩余的毫秒数
+                var hours=Math.floor(leave1/(3600));
+                //计算相差分钟数
+                var leave2=leave1%(3600);        //计算小时数后剩余的毫秒数
+                var minutes=Math.floor(leave2/(60));
+                //计算相差秒数
+                var leave3=leave2%(60);      //计算分钟数后剩余的毫秒数
+                var seconds=Math.round(leave3);
+
+                return [days,hours,minutes,seconds];
+                //alert(" 相差 "+days+"天 "+hours+"小时 "+minutes+" 分钟"+seconds+" 秒");
+
+            }else{
+                //显示 0时0分0秒
+            }
+        }catch(e){
+            alert("存在未知的错误: "+e.Message);
+        }
+        return [0,0,0,0];
+    };
+    console.log(difftime(2000, 3000));
+
+
+    /**
+     * 3.时间戳转时间(2017-07-09 20:00:00)函数
+     *
+     * @param time  时间戳
+     * @returns null|string
+     */
+
+    function changeTime(time) {
+        return new Date(parseInt(time) * 1000).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " ");
+    }
+
+    console.log(changeTime(Math.round(new Date() / 1000)));
+
+    var date = new Date();
+
+    console.log(new Date(date.getTime()).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " "));
+    console.log(date.toLocaleString().replace(/年|月/g, "-").replace(/日/g, " "));
+
+
+    /*
+    *
+    * 4.验证邮箱
+    * */
+    function CheckMail(value) {
+        if (IsEmpty(value)) return false;
+        return /^[_a-zA-Z0-9_-_._-]+@([_a-zA-Z0-9_-]+\.)+[a-zA-Z]{2,3}$/.test(value);
+    };
+
+    /*
+     *
+     * 5.验证手机号码
+     * */
+     function CheckMobile(value) {
+        if (IsEmpty(value)) return false;
+        return /^1[0-9]{10}$/.test(value);
+    };
+
+
+
+    var regu = "^[0-9a-zA-Z-_]+$";
+    var re = new RegExp(regu);
+    console.log(re.test("4--0d"));
+
+
+    /*6.分页跳转到某一页//http://shop.boqii.com/dog/list-621-0-0-0-0-0.html?&page=2
+    * */
+    $('#goPages').click(function(){
+        var goPages = parseInt($('.go_page_text').val());
+        if ( !goPages )
+        {
+            return false;
+        }
+        var totalPages = parseInt($('.total_page').html().replace("共","").replace("页",""));
+        if ( goPages > totalPages )
+        {
+            goPages = totalPages;
+        }
+        if ( goPages < 1 )
+        {
+            goPages = 1;
+        }
+        if ( goPages == '' )
+        {
+            return false;
+        }
+        var url = window.location.href;
+        //获取当前链接的参数
+        var hasPage = '';
+        if (location.search) {
+            var hasPage = parseQueryString(url);
+        }
+        if (hasPage.page) {
+            //存在page
+            var nowUrl = changeURLArg(url,'page',goPages);
+            window.location.href = nowUrl;
+        } else {
+            //不存在page
+            if (location.search) {
+                var currUrl = url + '&page='+goPages;
+
+            } else {
+                var currUrl = url + '?&page='+goPages;
+            }
+            window.location.href = currUrl;
+        }
+    });
+
+    //7.验证邮箱、手机号码、拼音、身份证
+    function validate(type, value) {
+        var valid = true;
+        switch (type) {
+            case "chn":
+                valid = /^[\u0391-\uFFE5]+$/.test(value);
+                break;
+            case "chnname":
+                valid = /^[\u0391-\uFFE5]+$/.test(value);
+                break;
+            case "email":
+                valid = /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i.test(value);
+                break;
+            case "tel":
+                valid = /^1[0-9][0-9]{9}$/i.test(value);
+                break;
+            case "phone":
+                valid = /^1\d{10}$/.test(value);
+                break;
+            case "pinyin":
+                //            valid = /^[A-Za-z]+[ |　]{1}[A-Za-z]+$/.test(value);
+                valid = /^[A-Za-z]+$/.test(value);
+                break;
+            case "idcard":
+                valid = _IsIDCard(value);
+                break;
+        }
+        return valid;
+
+    }
+
+    //两种方式写法
+    function validTel(value) {
+        return /^1[0-9][0-9]{9}$/i.test(value);
+    }
+
+    /*
+    * 验证身份证
+    * */
+    function _IsIDCard(value) {
+        value = $.trim(value);
+        var pattern = /^\d{15}(\d{2}[xX0-9])?$/;
+        if (pattern.test(value)) {
+            var cardbirthday = value.substring(6, 10) + "/" + value.substring(10, 12) + "/" + value.substring(12, 14);
+            var dt = new Date(cardbirthday);
+            var cardY = dt.getFullYear();
+            var cardM = dt.getMonth() + 1;
+            var cardD = dt.getDate() || 0;
+            if (isNaN(cardY) || isNaN(cardM) || isNaN(cardD)) {
+                return false;
+            }
+            if (parseInt(cardY) < 1900) {
+                return false;
+            }
+            if (parseInt(cardM) < 1 || parseInt(cardM) > 12) {
+                return false;
+            }
+            var day = new Date(cardY, cardM, 0);
+            var days = day.getDate();
+            if (parseInt(cardD) < 1 || parseInt(cardD) > parseInt(days)) {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        return true;
+    }
+
+
+
+    //问题整理part
+    //1.你们碰到过使用事件委托后，this指向了document的情况吗
+    //2.$("img[data-original]").lazyload();
+    //3.有没有谁做过jQuery ajax批量请求URL
+    //4.jquery大全   http://jquery.cuishifeng.cn/
+</script>
+</html>
